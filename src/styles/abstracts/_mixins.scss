@@ -1,0 +1,58 @@
+@use "sass:map";
+
+$breakpoints: (
+	"sm": 640px,
+	"md": 768px,
+	"lg": 1024px,
+	"xl": 1280px,
+	"2xl": 1536px,
+);
+
+@mixin sm {
+	@media (min-width: map.get($breakpoints, "sm")) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (min-width: map.get($breakpoints, "md")) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (min-width: map.get($breakpoints, "lg")) {
+		@content;
+	}
+}
+
+@mixin xl2 {
+	@media (min-width: map.get($breakpoints, "xl")) {
+		@content;
+	}
+}
+
+@mixin breakpoint($bp: 0) {
+	@media (min-width: $bp) {
+		@content;
+	}
+}
+
+//TODO: Remove this test code before production
+.responsive-test {
+	@include sm {
+		color: blue;
+	}
+	@include md {
+		color: green;
+	}
+	@include lg {
+		color: purple;
+	}
+	@include xl2 {
+		color: orange;
+	}
+	@include breakpoint(1400px) {
+		color: pink;
+	}
+}

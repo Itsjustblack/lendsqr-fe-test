@@ -1,0 +1,8 @@
+// =============================================================================
+// Abstracts Index
+// =============================================================================
+// Import all abstract files (variables, functions, mixins)
+// These files do not output any CSS on their own
+
+@use "variables";
+@use "mixins";
