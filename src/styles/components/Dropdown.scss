@@ -1,0 +1,168 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.dropdown {
+	// Main control (the select box)
+	&__control {
+		display: flex !important;
+		// min-height: 40px !important;
+		height: 40px !important;
+		align-items: center;
+		gap: 18px;
+		padding: 12px 20px !important;
+		background: $bg-primary !important;
+		border: 1px solid rgba($primary, 0.2) !important;
+		border-radius: 8px !important;
+		cursor: pointer !important;
+		transition: all 0.2s ease;
+		box-shadow: none !important;
+
+		&:hover {
+			background: rgba($primary, 0.15) !important;
+		}
+
+		// When menu is open
+		&--menu-is-open {
+			background: $bg-primary !important;
+			border-color: $primary !important;
+			box-shadow: none !important;
+		}
+	}
+
+	&__placeholder {
+		color: rgba($text-secondary, 0.7) !important;
+		font-weight: 400;
+	}
+
+	// Value container (where the selected value shows)
+	&__value-container,
+	&__single-value {
+		padding: 0 !important;
+		color: $text-secondary !important;
+		font-size: $font-size-sm;
+		font-weight: 400;
+	}
+
+	// Indicators container (holds the dropdown arrow)
+	&__indicators {
+		padding: 0 !important;
+		height: 100%;
+	}
+
+	// Dropdown indicator (the chevron)
+	&__dropdown-indicator {
+		padding: 0 !important;
+		color: $text-secondary !important;
+		opacity: 60% !important;
+
+		img {
+			width: 14px;
+			height: 14px;
+			transition: transform 0.2s ease;
+		}
+	}
+
+	// Menu (the dropdown container)
+	&__menu {
+		border-radius: 4px !important;
+		z-index: 10;
+		margin: 0 !important;
+		overflow: hidden !important;
+		box-shadow: none !important;
+		border-radius: 8px !important;
+		border: 1px solid rgba($primary, 0.2) !important;
+	}
+
+	// Menu list (the list container)
+	&__menu-list {
+		padding: 0px 0 !important;
+		max-height: 300px !important;
+	}
+
+	// Individual option
+	&__option {
+		padding: 8px 16px !important;
+		font-size: $font-size-sm;
+		color: $text-secondary !important;
+		cursor: pointer !important;
+		transition: background 0.2s ease;
+		background: transparent !important;
+
+		// Hovered state
+		&--is-focused {
+			background: rgba($primary, 0.05) !important;
+		}
+
+		// Selected state
+		&--is-selected {
+			font-weight: 500;
+			background: rgba($primary, 0.1) !important;
+			color: $text-secondary !important;
+		}
+
+		// Both focused and selected
+		&--is-focused.dropdown__option--is-selected {
+			background: rgba($primary, 0.15) !important;
+		}
+	}
+
+	// Pagination variant modifier (compact dropdown for pagination)
+	&--pagination {
+		.dropdown__control {
+			min-height: 30px !important;
+			height: 30px !important;
+			padding: 7px 12px !important;
+			background: rgba($primary, 0.1) !important;
+			border: none !important;
+			border-radius: 4px !important;
+
+			&:hover {
+				background: rgba($primary, 0.15) !important;
+				border-color: rgba($primary, 0.1) !important;
+			}
+
+			&.dropdown__control--menu-is-open {
+				background: rgba($primary, 0.15) !important;
+				border-color: rgba($primary, 0.1) !important;
+			}
+
+			&.dropdown__control--is-focused {
+				background: rgba($primary, 0.15) !important;
+				border-color: rgba($primary, 0.1) !important;
+			}
+		}
+
+		.dropdown__value-container,
+		.dropdown__single-value {
+			font-weight: 500;
+		}
+
+		.dropdown__dropdown-indicator {
+			img {
+				width: 14px;
+				height: 14px;
+			}
+
+			svg {
+				width: 14px;
+				height: 14px;
+			}
+		}
+
+		// Rotate chevron when menu is open
+		.dropdown__control--menu-is-open .dropdown__dropdown-indicator svg {
+			transform: rotate(180deg);
+		}
+
+		.dropdown__option {
+			&--is-selected {
+				font-weight: 500;
+				background: rgba($primary, 0.1) !important;
+			}
+
+			&--is-focused.dropdown__option--is-selected {
+				background: rgba($primary, 0.15) !important;
+			}
+		}
+	}
+}

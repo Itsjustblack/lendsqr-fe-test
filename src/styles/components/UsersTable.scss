@@ -1,0 +1,256 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.users-table {
+	// Container
+	// width: calc(100% - 60px);
+
+	@include xl {
+		// width: calc(100% - 120px);
+	}
+
+	&__container {
+		position: relative;
+		width: 100%;
+		overflow-x: auto;
+		background: $bg-primary;
+		border: 1px solid $table-border;
+		border-radius: 4px;
+		-webkit-overflow-scrolling: touch;
+
+		// Custom scrollbar styling
+		&::-webkit-scrollbar {
+			height: 8px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			border-radius: 4px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #888;
+			border-radius: 4px;
+		}
+
+		&::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+	}
+
+	// Table
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: $font-family-primary;
+	}
+
+	// Header
+	&__header {
+		&-cell {
+			padding-top: 20px;
+			padding-bottom: 12px;
+			min-width: 100px;
+
+			// Column-specific minimum widths
+			&:nth-child(1) {
+				min-width: 120px;
+			} // Organization
+			&:nth-child(2) {
+				min-width: 120px;
+			} // Username
+			&:nth-child(3) {
+				min-width: 180px;
+			} // Email
+			&:nth-child(4) {
+				min-width: 140px;
+			} // Phone Number
+			&:nth-child(5) {
+				min-width: 130px;
+			} // Date Joined
+			&:nth-child(6) {
+				min-width: 100px;
+			} // Status
+			&:nth-child(7) {
+				min-width: 80px;
+			} // Actions
+
+			&:first-of-type {
+				padding-left: 16px;
+			}
+
+			&:last-of-type {
+				padding-right: 16px;
+			}
+
+			@include sm {
+				&:first-of-type {
+					padding-left: 20px;
+				}
+
+				&:last-of-type {
+					padding-right: 20px;
+				}
+			}
+
+			@include md {
+				padding-top: 25px;
+				padding-bottom: 13px;
+
+				&:first-of-type {
+					padding-left: 24px;
+				}
+
+				&:last-of-type {
+					padding-right: 24px;
+				}
+			}
+
+			@include lg {
+				padding-top: 30px;
+				padding-bottom: 15px;
+
+				&:first-of-type {
+					padding-left: 30px;
+				}
+
+				&:last-of-type {
+					padding-right: 30px;
+				}
+			}
+		}
+
+		&-content {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		&-label {
+			font-size: 10px;
+			font-weight: 600;
+			color: $text-secondary;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+
+			@include md {
+				font-size: 11px;
+			}
+
+			@include lg {
+				font-size: $font-size-xs;
+			}
+		}
+	}
+
+	// Filter button in header
+	&__filter-button {
+		background: transparent;
+		border: none;
+		padding: 0;
+		// cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	&__filter-icon {
+		width: 100%;
+		object-fit: cover;
+	}
+
+	// Row
+	&__row {
+		border-top: 1px solid $table-divider;
+		background-color: $bg-primary;
+		transition: background-color 0.2s ease;
+
+		&:hover {
+			background: $bg-accent-light;
+		}
+	}
+
+	&__cell {
+		padding: 15px 0;
+		font-size: $font-size-xs;
+		color: $text-secondary;
+		vertical-align: middle;
+		min-width: 100px;
+
+		// Column-specific minimum widths
+		&:nth-child(1) {
+			min-width: 120px;
+		} // Organization
+		&:nth-child(2) {
+			min-width: 120px;
+		} // Username
+		&:nth-child(3) {
+			min-width: 180px;
+		} // Email
+		&:nth-child(4) {
+			min-width: 140px;
+		} // Phone Number
+		&:nth-child(5) {
+			min-width: 130px;
+		} // Date Joined
+		&:nth-child(6) {
+			min-width: 100px;
+		} // Status
+		&:nth-child(7) {
+			min-width: 80px;
+		} // Actions
+
+		&:first-child {
+			padding-left: 16px;
+		}
+
+		&:last-child {
+			padding-right: 16px;
+		}
+
+		@include sm {
+			padding: 16px 0;
+
+			&:first-child {
+				padding-left: 20px;
+			}
+
+			&:last-child {
+				padding-right: 20px;
+			}
+		}
+
+		@include md {
+			padding: 18px 0;
+			font-size: 13px;
+
+			&:first-child {
+				padding-left: 24px;
+			}
+
+			&:last-child {
+				padding-right: 24px;
+			}
+		}
+
+		@include lg {
+			padding: 21px 0 23px;
+			font-size: $font-size-sm;
+
+			&:first-child {
+				padding-left: 30px;
+			}
+
+			&:last-child {
+				padding-right: 30px;
+			}
+		}
+	}
+}

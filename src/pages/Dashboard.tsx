@@ -1,4 +1,4 @@
-// import UsersTable from "../components/UsersTable";
+import UsersTable from "../components/UsersTable";
 import DashboardLayout from "../layouts/DashboardLayout";
 import "../styles/pages/Dashboard.scss";
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
 					<span>2,453</span>
 				</div>
 			</div>
-			{/* <UsersTable /> */}
+			<UsersTable />
 		</DashboardLayout>
 	);
 };

@@ -8,11 +8,11 @@
 
 .layout {
 	min-height: 100dvh;
-	// width: 100vw;
 
 	.main-content {
 		position: relative;
-		// overflow: hidden;
+		// width: 100vw;
+		overflow-x: clip;
 		// height: 100%;
 		padding-top: 70px;
 		display: grid;
@@ -20,6 +20,9 @@
 	}
 
 	.content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
 		width: 100%;
 		padding: 24px;
 		background-color: #fbfbfb;
