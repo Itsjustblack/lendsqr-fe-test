@@ -1,0 +1,40 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.user-profile {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	margin-left: 30px;
+
+	.avatar {
+		width: 48px;
+		height: 100%;
+		border-radius: 100px;
+		overflow: hidden;
+
+		img {
+			object-fit: cover;
+			width: 100%;
+		}
+	}
+
+	.user-info {
+		display: none;
+	}
+
+	@include xs {
+		margin-left: 20px;
+
+		.user-info {
+			display: flex;
+			align-items: center;
+
+			span {
+				font-weight: 500;
+				font-size: $font-size-base;
+				color: $text-primary;
+			}
+		}
+	}
+}

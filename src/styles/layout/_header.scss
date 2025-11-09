@@ -3,5 +3,134 @@
 // =============================================================================
 // Header/Navigation bar styles
 
-.header {
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.layout {
+	min-height: 100dvh;
+	// width: 100vw;
+
+	.main-content {
+		position: relative;
+		// overflow: hidden;
+		// height: 100%;
+		padding-top: 70px;
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	.content {
+		width: 100%;
+		padding: 24px;
+		background-color: #fbfbfb;
+		// height: 100%;
+	}
+
+	@include lg {
+		.content {
+			padding: 30px;
+		}
+	}
+
+	@include xl {
+		.main-content {
+			padding-top: 100px;
+			grid-template-columns: 283px 1fr;
+		}
+
+		.content {
+			padding: 60px;
+		}
+	}
+}
+
+.nav-bar {
+	background-color: $bg-primary;
+	position: fixed;
+	top: 0;
+	z-index: 50;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+	padding: 0 16px 0;
+	padding-bottom: 20px;
+	box-shadow: 3px 0px 20px 0px #0000000a;
+	gap: 20px;
+
+	button {
+		padding: 0;
+		img {
+			object-fit: cover;
+			width: 100%;
+		}
+	}
+
+	.logo {
+		display: none;
+	}
+
+	.menu-button {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+	}
+
+	.nav-group {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+	}
+
+	.notification-button {
+		width: 24px;
+		margin-left: 47px;
+	}
+
+	.nav-link {
+		display: none;
+	}
+
+	@include xs {
+		.notification-button {
+			margin-left: 27px;
+		}
+
+		.nav-link {
+			display: block;
+			font-family: $font-family-roboto;
+			color: $text-primary;
+			font-size: $font-size-base;
+		}
+	}
+
+	@include sm {
+		.menu-button {
+			width: 26px;
+			height: 26px;
+		}
+	}
+
+	@include lg {
+		padding: 0 40px 0 20px;
+
+		.notification-button {
+			width: 26px;
+		}
+	}
+
+	@include xl {
+		height: 100px;
+		padding: 0 60px 0 30px;
+
+		.logo {
+			display: block;
+			max-height: 36px;
+		}
+
+		.menu-button {
+			display: none;
+		}
+	}
 }

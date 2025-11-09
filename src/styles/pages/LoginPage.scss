@@ -6,6 +6,16 @@
 	height: 100dvh;
 	padding: 30px 20px;
 
+	input {
+		height: 50px;
+		padding: 17.5px 16px 12.5px;
+		border-radius: 5px;
+	}
+
+	button {
+		background-color: $button-primary;
+	}
+
 	img {
 		object-fit: cover;
 		width: 100%;

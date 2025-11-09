@@ -1,0 +1,113 @@
+// =============================================================================
+// Sidebar
+// =============================================================================
+// Sidebar navigation styles
+
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.side-nav {
+	display: none;
+
+	@include xl {
+		display: block;
+		height: 100%;
+		overflow-y: auto;
+		padding-top: 39px;
+		padding-bottom: 20px;
+		background-color: $white;
+		width: 100%;
+
+		img {
+			object-fit: cover;
+			width: 100%;
+		}
+
+		button {
+			padding: 0;
+		}
+
+		.switch-organization {
+			padding-bottom: 52px;
+			display: flex;
+			font-weight: normal;
+			align-items: center;
+			gap: 10px;
+			font-size: $font-size-base;
+			color: $text-primary;
+			cursor: pointer;
+			padding-left: 30px;
+
+			.title {
+				color: $text-secondary;
+				font-weight: 500;
+				padding-left: 47px;
+				margin-bottom: 10px;
+			}
+
+			.icon-business {
+				width: 16px;
+			}
+
+			.icon-dropdown {
+				width: 14px;
+			}
+		}
+
+		.nav-group {
+			margin-top: 31px;
+
+			.title {
+				color: $text-secondary;
+				font-size: $font-size-xs;
+				font-weight: 500;
+				padding-left: 30px;
+				margin-bottom: 10px;
+			}
+
+			li:last-of-type .nav-link {
+				margin: 0;
+			}
+		}
+
+		.nav-link {
+			position: relative;
+			display: flex;
+			font-weight: normal;
+			align-items: center;
+			gap: 10px;
+			font-size: $font-size-base;
+			color: $text-primary;
+			opacity: 0.5;
+			cursor: pointer;
+			height: 40px;
+			padding-left: 30px;
+			margin-bottom: 11px;
+
+			span {
+				text-wrap: nowrap;
+			}
+
+			.icon {
+				width: 16px;
+				height: 12.8px;
+				flex-shrink: 0;
+			}
+
+			&.active,
+			&:hover {
+				opacity: 1;
+				background: $bg-accent-light;
+
+				&::before {
+					content: "";
+					position: absolute;
+					left: 0;
+					width: 3px;
+					height: 100%;
+					background-color: $bg-accent;
+				}
+			}
+		}
+	}
+}

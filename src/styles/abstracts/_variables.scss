@@ -13,10 +13,10 @@ $accent: #39cdcc;
 // -----------------------------------------------------------------------------
 // Semantic Colors
 // -----------------------------------------------------------------------------
-// $success: #1ac886;
-// $error: #e4033b;
-// $warning: #f3aa18;
-// $info: #326dee;
+$success: #39cd62;
+$error: #e4033b;
+$warning: #e9b200;
+$info: #326dee;
 
 // -----------------------------------------------------------------------------
 // Neutral Colors
@@ -36,12 +36,18 @@ $text-white: #ffffff;
 // Background Colors
 // -----------------------------------------------------------------------------
 $bg-primary: #ffffff;
+$bg-accent: #39cdcc;
+$bg-accent-light: #39cdcc0f;
 
 // -----------------------------------------------------------------------------
 // Component Specific
 // -----------------------------------------------------------------------------
 $button-primary: #39cdcc;
 $input-border: #545f7d26;
+
+// Table colors
+$table-border: rgba(33, 63, 125, 0.06);
+$table-divider: rgba(33, 63, 125, 0.1);
 // -----------------------------------------------------------------------------
 // Color Palette Map
 // -----------------------------------------------------------------------------
@@ -59,7 +65,7 @@ $colors: (
 // -----------------------------------------------------------------------------
 $font-family-primary: "Work Sans", sans-serif;
 $font-family-secondary: "Inter", sans-serif;
-// $font-family-secondary: "Avenir", sans-serif;
+$font-family-roboto: "Roboto", sans-serif;
 
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px

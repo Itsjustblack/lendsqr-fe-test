@@ -10,27 +10,39 @@
 
 input {
 	position: relative;
+	display: block;
 	width: 100%;
-	height: 50px;
-	padding: 17.5px 16px 12.5px;
 	display: flex;
+	font-family: inherit;
 	justify-content: center;
 	align-items: center;
-	border-radius: 5px;
+	border: 1px solid rgba($primary, 0.2);
+	color: $text-secondary;
+	background-color: $bg-primary;
 	outline: none;
 	background-color: $bg-primary;
 	font-size: $font-size-sm;
-	color: $text-secondary;
+	font-family: inherit;
 	font-weight: 400;
 	line-height: 100%;
 	border: 2px solid $input-border;
+	cursor: pointer;
+
+	&::placeholder {
+		color: $text-secondary;
+		opacity: 0.7;
+	}
 
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.6;
 	}
 
+	&[type="date"] {
+		justify-content: flex-start;
+	}
+
 	&:focus {
-		border-color: $button-primary;
+		border-color: $primary;
 	}
 }

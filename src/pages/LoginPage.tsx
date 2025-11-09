@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router";
+import "../styles/pages/LoginPage.scss";
+
 const LoginPage = () => {
+	const navigate = useNavigate();
+
+	function goToDashboard() {
+		navigate("/dashboard");
+	}
 	return (
 		<main className="login-page">
 			<div className="container">
@@ -34,7 +42,7 @@ const LoginPage = () => {
 								placeholder="Password"
 							/>
 							<p className="form-link">Forgot Password?</p>
-							<button>LOG IN</button>
+							<button onClick={goToDashboard}>LOG IN</button>
 						</form>
 					</div>
 				</div>

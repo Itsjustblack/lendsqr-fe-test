@@ -1,0 +1,54 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	height: 40px;
+
+	input {
+		display: none;
+	}
+
+	.search-button {
+		margin-left: auto;
+		background-color: $button-primary;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 15px 0 13px 0;
+		width: 40px;
+		height: 100%;
+		flex-shrink: 0;
+		border-radius: 8px;
+
+		img {
+			width: 14px;
+			height: 14px;
+		}
+	}
+
+	@include sm {
+		margin-left: auto;
+		width: 100%;
+		max-width: 400px;
+
+		input {
+			padding: 6px 8px 6px 12px;
+			border-right: 0;
+			height: 100%;
+			border-radius: 8px 0 0 8px;
+
+			&:focus {
+				border-color: $button-primary;
+			}
+		}
+
+		.search-button {
+			width: 56px;
+			border-radius: 0 8px 8px 0;
+		}
+	}
+}
