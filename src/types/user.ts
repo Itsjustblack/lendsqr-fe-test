@@ -1,3 +1,5 @@
+import type { FilterFormValues } from "../libs/validation/filterSchema";
+
 export type UserStatus = "active" | "inactive" | "pending" | "blacklisted";
 
 export interface User {
@@ -8,4 +10,20 @@ export interface User {
 	phoneNumber: string;
 	dateJoined: Date;
 	status: UserStatus;
+}
+
+export interface PaginatedResponse<T> {
+	data: T[];
+	totalItems: number;
+	page: number;
+	pageSize: number;
+	pageCount: number;
+}
+
+export interface QueryParams {
+	filters?: FilterFormValues;
+	pagination?: {
+		page: number;
+		pageSize: number;
+	};
 }

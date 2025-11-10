@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import {
 	flexRender,
 	getCoreRowModel,
@@ -5,12 +6,12 @@ import {
 	getSortedRowModel,
 	useReactTable,
 	type ColumnDef,
-	type PaginationState,
 	type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { mockUsers } from "../data/mockUsers";
+import { getAllUsers } from "../libs/api/user/queries";
 import { formatDate } from "../libs/utils";
+import { useFilters, usePagination } from "../store/filters";
 import "../styles/components/UsersTable.scss";
 import type { User, UserStatus } from "../types/user";
 import ActionsMenu from "./ActionsMenu";
@@ -20,9 +21,20 @@ import TableFilterButton from "./TableFilter";
 
 const UsersTable = () => {
 	const [sorting, setSorting] = useState<SortingState>([]);
-	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+
+	const { filters } = useFilters();
+	const { pagination, setPagination } = usePagination();
+
+	const { data, isLoading, isError } = useQuery({
+		queryKey: ["users", pagination, filters],
+		queryFn: () =>
+			getAllUsers({
+				filters,
+				pagination: {
+					page: pagination.pageIndex + 1,
+					pageSize: pagination.pageSize,
+				},
+			}),
 	});
 
 	// Column definitions
@@ -50,7 +62,7 @@ const UsersTable = () => {
 		{
 			accessorKey: "dateJoined",
 			header: "Date Joined",
-			cell: ({ row }) => formatDate(row.original.dateJoined as Date),
+			cell: ({ row }) => formatDate(new Date(row.original.dateJoined)),
 			sortingFn: "datetime",
 		},
 		{
@@ -67,19 +79,34 @@ const UsersTable = () => {
 		},
 	];
 
+	const allUsers = data?.data ?? [];
+	const pageCount = data?.pageCount ?? 0;
+
 	const table = useReactTable({
-		data: mockUsers,
+		data: allUsers,
 		columns,
 		state: {
 			sorting,
 			pagination,
 		},
+		pageCount,
 		onSortingChange: setSorting,
-		onPaginationChange: setPagination,
+		onPaginationChange: (updater) => {
+			if (typeof updater === "function") {
+				setPagination(updater(pagination)); // call the function with current state
+			} else {
+				setPagination(updater); // set the new state directly
+			}
+		},
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
+		manualFiltering: true,
+		manualPagination: true,
 	});
+
+	if (isLoading) return <div>Loading...</div>;
+	if (isError) return <div>Error loading users</div>;
 
 	return (
 		<div className="users-table">
@@ -146,7 +173,7 @@ const UsersTable = () => {
 					</tbody>
 				</table>
 			</div>
-			<Pagination table={table} />
+			{allUsers.length > 0 && <Pagination table={table} />}
 		</div>
 	);
 };

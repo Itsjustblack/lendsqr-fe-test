@@ -1,3 +1,5 @@
+import type { QueryParams } from "../types/user";
+
 const months = [
 	"Jan",
 	"Feb",
@@ -26,4 +28,12 @@ export function formatDate(date: Date): string {
 	const minutesStr = minutes < 10 ? "0" + minutes : minutes;
 
 	return `${month} ${day}, ${year} ${hours}:${minutesStr} ${ampm}`;
+}
+
+export function flattenQueryParams(params?: QueryParams) {
+	if (!params) return {};
+	return {
+		...params.filters,
+		...params.pagination,
+	};
 }

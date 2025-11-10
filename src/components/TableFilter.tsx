@@ -1,22 +1,14 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import Dropdown, { type OptionType } from "./Dropdown";
-import "../styles/components/TableFilter.scss";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { Popover } from "react-tiny-popover";
-
-export interface TableFilterProps {
-	// onFilter: (filters: FilterValues) => void;
-	onReset: () => void;
-	onClose?: () => void;
-}
-
-export interface UserFilters {
-	organization?: string;
-	username?: string;
-	email?: string;
-	date?: string;
-	phoneNumber?: string;
-	status?: string;
-}
+import {
+	filterSchema,
+	type FilterFormValues,
+} from "../libs/validation/filterSchema";
+import { useFilters } from "../store/filters";
+import "../styles/components/TableFilter.scss";
+import Dropdown, { type OptionType } from "./Dropdown";
 
 const organizationOptions: OptionType<string>[] = [
 	{ label: "Lendsqr", value: "lendsqr" },
@@ -31,32 +23,34 @@ const statusOptions: OptionType<string>[] = [
 	{ label: "Blacklisted", value: "blacklisted" },
 ];
 
-const TableFilter: React.FC<TableFilterProps> = ({
-	// onFilter,
-	onReset,
-	onClose,
-}) => {
-	const [filters, setFilters] = useState<UserFilters>({});
+const TableFilter = () => {
+	const {
+		register,
+		handleSubmit,
+		control,
+		reset,
+		formState: { errors, isValid },
+	} = useForm<FilterFormValues>({
+		resolver: zodResolver(filterSchema),
+		mode: "onChange",
+	});
 
-	const handleInputChange = (field: keyof UserFilters, value: string) => {
-		setFilters((prev) => ({
-			...prev,
-			[field]: value,
-		}));
-	};
+	const { setFilters, resetFilters } = useFilters();
 
-	const handleFilter = () => {
-		// onFilter(filters);
-		console.log(filters);
+	const onSubmit: SubmitHandler<FilterFormValues> = (data) => {
+		setFilters(data);
 	};
 
 	const handleReset = () => {
-		setFilters({});
-		onReset();
+		reset();
+		resetFilters();
 	};
 
 	return (
-		<div className="table-filter">
+		<form
+			className="table-filter"
+			onSubmit={handleSubmit(onSubmit)}
+		>
 			<div className="table-filter__field">
 				<label
 					htmlFor="organization"
@@ -64,20 +58,20 @@ const TableFilter: React.FC<TableFilterProps> = ({
 				>
 					Organization
 				</label>
-				<Dropdown
-					options={organizationOptions}
-					menuPlacement="bottom"
-					selectedOption={
-						filters.organization
-							? organizationOptions.find(
-									(opt) => opt.value === filters.organization
-							  ) || null
-							: null
-					}
-					onChange={(option) =>
-						handleInputChange("organization", option?.value || "")
-					}
-					placeholder="Select"
+				<Controller
+					name="organization"
+					control={control}
+					render={({ field: { onChange, value } }) => (
+						<Dropdown
+							options={organizationOptions}
+							menuPlacement="bottom"
+							selectedOption={
+								organizationOptions.find((opt) => opt.value === value) || null
+							}
+							onChange={(option) => onChange(option?.value || null)}
+							placeholder="Select"
+						/>
+					)}
 				/>
 			</div>
 
@@ -93,9 +87,9 @@ const TableFilter: React.FC<TableFilterProps> = ({
 					type="text"
 					className="table-filter__input"
 					placeholder="User"
-					value={filters.username}
-					onChange={(e) => handleInputChange("username", e.target.value)}
+					{...register("username")}
 				/>
+				{errors.username && <span>This field is required</span>}
 			</div>
 
 			<div className="table-filter__field">
@@ -110,9 +104,11 @@ const TableFilter: React.FC<TableFilterProps> = ({
 					type="email"
 					className="table-filter__input"
 					placeholder="Email"
-					value={filters.email}
-					onChange={(e) => handleInputChange("email", e.target.value)}
+					{...register("email")}
 				/>
+				{errors.email && (
+					<span className="error-message">{errors.email.message}</span>
+				)}
 			</div>
 
 			<div className="table-filter__field">
@@ -128,8 +124,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
 						type="date"
 						className="table-filter__input table-filter__input--date"
 						placeholder="Date"
-						value={filters.date}
-						onChange={(e) => handleInputChange("date", e.target.value)}
+						{...register("date")}
 					/>
 					<img
 						src="/assets/icons/calendar.svg"
@@ -151,9 +146,11 @@ const TableFilter: React.FC<TableFilterProps> = ({
 					type="tel"
 					className="table-filter__input"
 					placeholder="Phone Number"
-					value={filters.phoneNumber}
-					onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+					{...register("phoneNumber")}
 				/>
+				{errors.phoneNumber && (
+					<span className="error-message">{errors.phoneNumber.message}</span>
+				)}
 			</div>
 
 			<div className="table-filter__field">
@@ -163,19 +160,20 @@ const TableFilter: React.FC<TableFilterProps> = ({
 				>
 					Status
 				</label>
-				<Dropdown
-					options={statusOptions}
-					menuPlacement="bottom"
-					selectedOption={
-						filters.status
-							? statusOptions.find((opt) => opt.value === filters.status) ||
-							  null
-							: null
-					}
-					onChange={(option) =>
-						handleInputChange("status", option?.value || "")
-					}
-					placeholder="Select"
+				<Controller
+					name="status"
+					control={control}
+					render={({ field: { onChange, value } }) => (
+						<Dropdown
+							options={statusOptions}
+							menuPlacement="bottom"
+							selectedOption={
+								statusOptions.find((opt) => opt.value === value) || null
+							}
+							onChange={(option) => onChange(option?.value || null)}
+							placeholder="Select"
+						/>
+					)}
 				/>
 			</div>
 
@@ -188,14 +186,14 @@ const TableFilter: React.FC<TableFilterProps> = ({
 					Reset
 				</button>
 				<button
-					type="button"
+					type="submit"
+					disabled={!isValid}
 					className="table-filter__button table-filter__button--filter"
-					onClick={handleFilter}
 				>
 					Filter
 				</button>
 			</div>
-		</div>
+		</form>
 	);
 };
 
@@ -205,6 +203,8 @@ const TableFilterButton = () => {
 	const openMenu = () => setIsOpen(true);
 	const closeMenu = () => setIsOpen(false);
 
+	const filterContent = <TableFilter />;
+
 	return (
 		<Popover
 			isOpen={isOpen}
@@ -212,13 +212,8 @@ const TableFilterButton = () => {
 			align="end"
 			padding={10}
 			reposition={false}
-			// onClickOutside={closeMenu}
-			content={() => (
-				<TableFilter
-					onReset={() => "ksks"}
-					onClose={closeMenu}
-				/>
-			)}
+			onClickOutside={closeMenu}
+			content={() => filterContent} // use memoized instance
 		>
 			<button
 				onClick={openMenu}

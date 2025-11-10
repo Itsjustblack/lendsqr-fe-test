@@ -6,7 +6,7 @@ import "../styles/components/ActionsMenu.scss";
 const ActionsMenu: React.FC<{ userId: string }> = ({ userId }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	console.log(userId);
+	// console.log(userId);
 
 	const openMenu = () => setIsOpen(true);
 	const closeMenu = () => setIsOpen(false);

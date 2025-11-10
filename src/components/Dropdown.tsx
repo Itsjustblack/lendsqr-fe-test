@@ -46,7 +46,10 @@ const Dropdown = <T = number,>({
 		variant === "pagination" ? "dropdown dropdown--pagination" : "dropdown";
 
 	return (
-		<div className={wrapperClass}>
+		<div
+			className={wrapperClass}
+			onClick={(e) => e.stopPropagation()}
+		>
 			<Select<OptionType<T>>
 				value={selectedOption}
 				options={options}
