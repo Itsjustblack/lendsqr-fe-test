@@ -27,3 +27,51 @@ export interface QueryParams {
 		pageSize: number;
 	};
 }
+
+export interface UserDetails {
+	personalInfo: {
+		fullName: string;
+		phoneNumber: string;
+		emailAddress: string;
+		bvn: string;
+		gender: string;
+		maritalStatus: string;
+		children: string;
+		typeOfResidence: string;
+	};
+	education: {
+		levelOfEducation: string;
+		employmentStatus: string;
+		sectorOfEmployment: string;
+		durationOfEmployment: string;
+		officeEmail: string;
+		monthlyIncome: string;
+		loanRepayment: string;
+	};
+	socials: {
+		twitter: string;
+		facebook: string;
+		instagram: string;
+	};
+	guarantor: {
+		fullName: string;
+		phoneNumber: string;
+		emailAddress: string;
+		relationship: string;
+	};
+	secondGuarantor: {
+		fullName: string;
+		phoneNumber: string;
+		emailAddress: string;
+		relationship: string;
+	};
+	basicInfo: {
+		avatar?: string;
+		name: string;
+		userId: string;
+		tier: number;
+		bankAccount: string;
+		bankName: string;
+		accountBalance: string;
+	};
+}

@@ -1,55 +1,9 @@
 import { useNavigate } from "react-router";
+import type { UserDetails } from "../types/user";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useEffect } from "react";
 
-interface UserDetailsData {
-	personalInfo: {
-		fullName: string;
-		phoneNumber: string;
-		emailAddress: string;
-		bvn: string;
-		gender: string;
-		maritalStatus: string;
-		children: string;
-		typeOfResidence: string;
-	};
-	education: {
-		levelOfEducation: string;
-		employmentStatus: string;
-		sectorOfEmployment: string;
-		durationOfEmployment: string;
-		officeEmail: string;
-		monthlyIncome: string;
-		loanRepayment: string;
-	};
-	socials: {
-		twitter: string;
-		facebook: string;
-		instagram: string;
-	};
-	guarantor: {
-		fullName: string;
-		phoneNumber: string;
-		emailAddress: string;
-		relationship: string;
-	};
-	secondGuarantor: {
-		fullName: string;
-		phoneNumber: string;
-		emailAddress: string;
-		relationship: string;
-	};
-	basicInfo: {
-		avatar?: string;
-		name: string;
-		userId: string;
-		tier: number;
-		bankAccount: string;
-		bankName: string;
-		accountBalance: string;
-	};
-}
-
-// Mock data - this would typically come from an API
-const mockUserData: UserDetailsData = {
+const mockUserData: UserDetails = {
 	personalInfo: {
 		fullName: "Grace Effiom",
 		phoneNumber: "07060780922",
@@ -97,20 +51,27 @@ const mockUserData: UserDetailsData = {
 };
 
 const UserDetails = () => {
+	const [userData, setUserData] = useLocalStorage<UserDetails>(
+		"user-details",
+		mockUserData
+	);
+
+	useEffect(() => {
+		if (!userData) setUserData(mockUserData);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const navigate = useNavigate();
-	const userData = mockUserData; // In real app, fetch from API using user ID from route params
 
 	const handleBack = () => {
 		navigate(-1);
 	};
 
 	const handleBlacklist = () => {
-		// TODO: Implement blacklist functionality
 		console.log("Blacklist user");
 	};
 
 	const handleActivate = () => {
-		// TODO: Implement activate functionality
 		console.log("Activate user");
 	};
 
