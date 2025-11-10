@@ -2,14 +2,20 @@ import { useState } from "react";
 import { Popover } from "react-tiny-popover";
 
 import "../styles/components/ActionsMenu.scss";
+import { useNavigate } from "react-router";
 
 const ActionsMenu: React.FC<{ userId: string }> = ({ userId }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	// console.log(userId);
+	const navigate = useNavigate();
 
 	const openMenu = () => setIsOpen(true);
 	const closeMenu = () => setIsOpen(false);
+
+	const handleViewDetails = () => {
+		navigate(`/users/${userId}`);
+		closeMenu();
+	};
 
 	return (
 		<Popover
@@ -22,7 +28,7 @@ const ActionsMenu: React.FC<{ userId: string }> = ({ userId }) => {
 				<div className="actions-menu__dropdown">
 					<div
 						className="actions-menu__item"
-						onClick={closeMenu}
+						onClick={handleViewDetails}
 					>
 						<div className="actions-menu__icon">
 							<img

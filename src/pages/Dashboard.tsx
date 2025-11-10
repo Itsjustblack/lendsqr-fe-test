@@ -1,10 +1,9 @@
 import UsersTable from "../components/UsersTable";
-import DashboardLayout from "../layouts/DashboardLayout";
 import "../styles/pages/Dashboard.scss";
 
 const Dashboard = () => {
 	return (
-		<DashboardLayout>
+		<>
 			<h1 className="title">Users</h1>
 			<div className="user-stats">
 				<div className="card">
@@ -41,7 +40,7 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<UsersTable />
-		</DashboardLayout>
+		</>
 	);
 };
 

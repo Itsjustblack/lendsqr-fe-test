@@ -5,7 +5,7 @@ const LoginPage = () => {
 	const navigate = useNavigate();
 
 	function goToDashboard() {
-		navigate("/dashboard");
+		navigate("/users");
 	}
 	return (
 		<main className="login-page">

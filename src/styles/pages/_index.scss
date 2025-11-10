@@ -1,7 +1,8 @@
 // =============================================================================
-// Dashboard Page
+// Pages Index
 // =============================================================================
-// Styles specific to the dashboard page
+// Page-specific styles
 
-.dashboard {
-}
+@forward "LoginPage";
+@forward "Dashboard";
+@forward "UserDetails";

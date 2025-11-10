@@ -50,22 +50,3 @@ $breakpoints: (
 		@content;
 	}
 }
-
-//TODO: Remove this test code before production
-.responsive-test {
-	@include sm {
-		color: blue;
-	}
-	@include md {
-		color: green;
-	}
-	@include lg {
-		color: purple;
-	}
-	@include xl2 {
-		color: orange;
-	}
-	@include breakpoint(1400px) {
-		color: pink;
-	}
-}
