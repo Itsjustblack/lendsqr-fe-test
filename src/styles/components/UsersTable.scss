@@ -17,6 +17,7 @@
 		border: 1px solid $table-border;
 		border-radius: 4px;
 		-webkit-overflow-scrolling: touch;
+		box-shadow: 3px 5px 20px 0px rgba($black, 0.04);
 
 		// Custom scrollbar styling
 		&::-webkit-scrollbar {
@@ -24,17 +25,17 @@
 		}
 
 		&::-webkit-scrollbar-track {
-			background: #f1f1f1;
+			background: $scrollbar-track;
 			border-radius: 4px;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: #888;
+			background: $scrollbar-thumb;
 			border-radius: 4px;
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background: #555;
+			background: $scrollbar-thumb-hover;
 		}
 	}
 

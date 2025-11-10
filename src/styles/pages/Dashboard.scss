@@ -23,9 +23,9 @@ img {
 	flex-direction: column;
 	justify-content: center;
 	background-color: $white;
-	border: 1px solid #213f7d0f;
+	border: 1px solid rgba($primary, 0.06);
 	border-radius: 4px;
-	box-shadow: 3px 5px 20px 0px #0000000a;
+	box-shadow: 3px 5px 20px 0px rgba($black, 0.04);
 	padding: 20px 30px 30px;
 	width: 100%;
 	height: 160px;

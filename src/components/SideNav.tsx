@@ -7,7 +7,7 @@ const NAV_ITEMS = [
 			{ name: "Loans", icon: "/assets/icons/loans.svg" },
 			{ name: "Decision Models", icon: "/assets/icons/decision-models.svg" },
 			{ name: "Savings", icon: "/assets/icons/savings.svg" },
-			{ name: "Loan Requests", icon: "/assets/icons/loan-requests.svg" },
+			{ name: "Loan Requests", icon: "/assets/icons/loan-products.svg" },
 			{ name: "Whitelist", icon: "/assets/icons/whitelist.svg" },
 			{ name: "Karma", icon: "/assets/icons/karma.svg" },
 		],
@@ -32,6 +32,7 @@ const NAV_ITEMS = [
 			{ name: "Preferences", icon: "/assets/icons/preferences.svg" },
 			{ name: "Fees and Pricing", icon: "/assets/icons/fees-pricing.svg" },
 			{ name: "Audit Logs", icon: "/assets/icons/audit-logs.svg" },
+			{ name: "System Messages", icon: "/assets/icons/system-messages.svg" },
 		],
 	},
 ];
@@ -80,6 +81,15 @@ const SideNav = () => {
 					))}
 				</ul>
 			))}
+			<a className="nav-link nav-link__footer">
+				<img
+					className="icon"
+					src="/assets/icons/logout.svg"
+					alt="Logout Icon"
+				/>
+				<span>Logout</span>
+			</a>
+			<span className="side-nav__footer-text">v1.2.0</span>
 		</div>
 	);
 };

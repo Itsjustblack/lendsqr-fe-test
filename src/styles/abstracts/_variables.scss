@@ -38,6 +38,7 @@ $text-white: #ffffff;
 $bg-primary: #ffffff;
 $bg-accent: #39cdcc;
 $bg-accent-light: #39cdcc0f;
+$bg-light: #fbfbfb;
 
 // -----------------------------------------------------------------------------
 // Component Specific
@@ -48,6 +49,11 @@ $input-border: #545f7d26;
 // Table colors
 $table-border: rgba(33, 63, 125, 0.06);
 $table-divider: rgba(33, 63, 125, 0.1);
+
+// Scrollbar colors
+$scrollbar-track: #f1f1f1;
+$scrollbar-thumb: #888888;
+$scrollbar-thumb-hover: #555555;
 // -----------------------------------------------------------------------------
 // Color Palette Map
 // -----------------------------------------------------------------------------

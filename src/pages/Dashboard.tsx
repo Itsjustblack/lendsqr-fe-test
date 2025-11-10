@@ -16,7 +16,7 @@ const Dashboard = () => {
 				</div>
 				<div className="card">
 					<img
-						src="/assets/icons/users.svg"
+						src="/assets/icons/active-users.svg"
 						alt="users icon"
 					/>
 					<p>Active Users</p>
@@ -24,7 +24,7 @@ const Dashboard = () => {
 				</div>
 				<div className="card">
 					<img
-						src="/assets/icons/users.svg"
+						src="/assets/icons/loan-users.svg"
 						alt="users icon"
 					/>
 					<p>Users with loans</p>
@@ -32,7 +32,7 @@ const Dashboard = () => {
 				</div>
 				<div className="card">
 					<img
-						src="/assets/icons/users.svg"
+						src="/assets/icons/savings-users.svg"
 						alt="users icon"
 					/>
 					<p>Users with Savings</p>

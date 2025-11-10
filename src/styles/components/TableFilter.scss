@@ -7,9 +7,9 @@
 
 .table-filter {
 	background-color: $bg-primary;
-	border: 1px solid rgba(84, 95, 125, 0.14);
+	border: 1px solid rgba($text-secondary, 0.14);
 	border-radius: 4px;
-	box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+	box-shadow: 3px 5px 20px 0px rgba($black, 0.04);
 	padding: 30px 20px;
 	max-width: 270px;
 	width: 100%;
@@ -102,11 +102,11 @@
 		&--reset {
 			border: 1px solid $text-secondary;
 			&:hover {
-				background-color: rgba(84, 95, 125, 0.05);
+				background-color: rgba($text-secondary, 0.05);
 			}
 
 			&:active {
-				background-color: rgba(84, 95, 125, 0.1);
+				background-color: rgba($text-secondary, 0.1);
 			}
 		}
 
