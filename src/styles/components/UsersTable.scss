@@ -2,41 +2,14 @@
 @use "../abstracts/mixins" as *;
 
 .users-table {
-	// Container
-	// width: calc(100% - 60px);
-
-	@include xl {
-		// width: calc(100% - 120px);
-	}
-
 	&__container {
 		position: relative;
-		width: 100%;
 		overflow-x: auto;
+
 		background: $bg-primary;
 		border: 1px solid $table-border;
 		border-radius: 4px;
-		-webkit-overflow-scrolling: touch;
 		box-shadow: 3px 5px 20px 0px rgba($black, 0.04);
-
-		// Custom scrollbar styling
-		&::-webkit-scrollbar {
-			height: 8px;
-		}
-
-		&::-webkit-scrollbar-track {
-			background: $scrollbar-track;
-			border-radius: 4px;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: $scrollbar-thumb;
-			border-radius: 4px;
-		}
-
-		&::-webkit-scrollbar-thumb:hover {
-			background: $scrollbar-thumb-hover;
-		}
 	}
 
 	// Table
@@ -51,30 +24,9 @@
 		&-cell {
 			padding-top: 20px;
 			padding-bottom: 12px;
-			min-width: 100px;
+			// min-width: 100px;
 
-			// Column-specific minimum widths
-			&:nth-child(1) {
-				min-width: 120px;
-			} // Organization
-			&:nth-child(2) {
-				min-width: 120px;
-			} // Username
-			&:nth-child(3) {
-				min-width: 180px;
-			} // Email
-			&:nth-child(4) {
-				min-width: 140px;
-			} // Phone Number
-			&:nth-child(5) {
-				min-width: 130px;
-			} // Date Joined
-			&:nth-child(6) {
-				min-width: 100px;
-			} // Status
-			&:nth-child(7) {
-				min-width: 80px;
-			} // Actions
+			padding: 0 16px;
 
 			&:first-of-type {
 				padding-left: 16px;
@@ -85,6 +37,8 @@
 			}
 
 			@include sm {
+				padding: 0 20px;
+
 				&:first-of-type {
 					padding-left: 20px;
 				}
@@ -95,6 +49,7 @@
 			}
 
 			@include md {
+				padding: 0 24px;
 				padding-top: 25px;
 				padding-bottom: 13px;
 
@@ -108,6 +63,7 @@
 			}
 
 			@include lg {
+				padding: 0 30px;
 				padding-top: 30px;
 				padding-bottom: 15px;
 
@@ -128,15 +84,12 @@
 		}
 
 		&-label {
-			font-size: 10px;
 			font-weight: 600;
+			font-size: 11px;
 			color: $text-secondary;
 			text-transform: uppercase;
 			letter-spacing: 0.02em;
-
-			@include md {
-				font-size: 11px;
-			}
+			text-wrap: nowrap;
 
 			@include lg {
 				font-size: $font-size-xs;
@@ -253,5 +206,111 @@
 				padding-right: 30px;
 			}
 		}
+	}
+}
+
+.no-users {
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	&__illustration {
+		width: 300px;
+		object-fit: cover;
+	}
+
+	&__title {
+		margin-top: 20px;
+		margin-bottom: 10px;
+		font-size: $font-size-2xl;
+		color: rgba($text-primary, 0.8);
+		font-weight: 600;
+	}
+
+	&__subtitle {
+		font-size: $font-size-base;
+		color: rgba($text-primary, 0.8);
+		text-align: center;
+		max-width: 400px;
+		line-height: 1.5;
+	}
+
+	@include md {
+		margin-top: 50px;
+	}
+}
+
+.loader-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	width: fit-content;
+	height: 400px;
+
+	.loader {
+		--r1: 154%;
+		--r2: 68.5%;
+		width: 60px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: radial-gradient(
+				var(--r1) var(--r2) at top,
+				$white 79.5%,
+				$accent 80%
+			),
+			radial-gradient(var(--r1) var(--r2) at bottom, $accent 79.5%, $white 80%),
+			radial-gradient(var(--r1) var(--r2) at top, $white 79.5%, $accent 80%),
+			#ccc;
+		background-size: 50.5% 220%;
+		background-position: -100% 0%, 0% 0%, 100% 0%;
+		background-repeat: no-repeat;
+		animation: l9 2s infinite linear;
+	}
+
+	@keyframes l9 {
+		33% {
+			background-position: 0% 33%, 100% 33%, 200% 33%;
+		}
+		66% {
+			background-position: -100% 66%, 0% 66%, 100% 66%;
+		}
+		100% {
+			background-position: 0% 100%, 100% 100%, 200% 100%;
+		}
+	}
+}
+
+.error-section {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	&__illustration {
+		width: 300px;
+		object-fit: cover;
+	}
+
+	&__title {
+		margin-top: 20px;
+		margin-bottom: 8px;
+		font-size: $font-size-2xl;
+		color: rgba($text-primary, 0.8);
+		font-weight: 600;
+	}
+
+	&__subtitle {
+		font-size: $font-size-base;
+		color: rgba($text-primary, 0.8);
+		text-align: center;
+		max-width: 400px;
+		line-height: 1.5;
 	}
 }

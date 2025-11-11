@@ -39,6 +39,7 @@ $bg-primary: #ffffff;
 $bg-accent: #39cdcc;
 $bg-accent-light: #39cdcc0f;
 $bg-light: #fbfbfb;
+$bg-muted: #f5f5f5;
 
 // -----------------------------------------------------------------------------
 // Component Specific
@@ -86,3 +87,20 @@ $font-size-6xl: 3.75rem; // 60px
 $font-size-7xl: 4.5rem; // 72px
 $font-size-8xl: 6rem; // 96px
 $font-size-9xl: 8rem; // 128px
+
+// -----------------------------------------------------------------------------
+// Animations
+// -----------------------------------------------------------------------------
+$animate-caret-blink: caret-blink 2s ease-out infinite;
+
+@keyframes caret-blink {
+	0%,
+	70%,
+	100% {
+		opacity: 1;
+	}
+	20%,
+	50% {
+		opacity: 0;
+	}
+}

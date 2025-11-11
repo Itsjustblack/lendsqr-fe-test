@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import {
 	flexRender,
 	getCoreRowModel,
@@ -35,6 +35,7 @@ const UsersTable = () => {
 					pageSize: pagination.pageSize,
 				},
 			}),
+		placeholderData: keepPreviousData,
 	});
 
 	// Column definitions
@@ -79,7 +80,7 @@ const UsersTable = () => {
 		},
 	];
 
-	const allUsers = data?.data ?? [];
+	const allUsers = data?.data || [];
 	const pageCount = data?.pageCount ?? 0;
 
 	const table = useReactTable({
@@ -93,9 +94,9 @@ const UsersTable = () => {
 		onSortingChange: setSorting,
 		onPaginationChange: (updater) => {
 			if (typeof updater === "function") {
-				setPagination(updater(pagination)); // call the function with current state
+				setPagination(updater(pagination));
 			} else {
-				setPagination(updater); // set the new state directly
+				setPagination(updater);
 			}
 		},
 		getCoreRowModel: getCoreRowModel(),
@@ -105,8 +106,18 @@ const UsersTable = () => {
 		manualPagination: true,
 	});
 
-	if (isLoading) return <div>Loading...</div>;
-	if (isError) return <div>Error loading users</div>;
+	if (isError)
+		return (
+			<div className="error-section">
+				<img
+					src="/assets/images/no-users.svg"
+					alt="No Users"
+					className="error-section__illustration"
+				/>
+				<span className="error-section__title">Unable to load users</span>
+				<p className="error-section__subtitle">Please try again later.</p>
+			</div>
+		);
 
 	return (
 		<div className="users-table">
@@ -124,10 +135,7 @@ const UsersTable = () => {
 										className="users-table__header-cell"
 									>
 										{header.isPlaceholder ? null : (
-											<div
-												className="users-table__header-content"
-												// onClick={header.column.getToggleSortingHandler()}
-											>
+											<div className="users-table__header-content">
 												<span className="users-table__header-label">
 													{flexRender(
 														header.column.columnDef.header,
@@ -137,8 +145,8 @@ const UsersTable = () => {
 												{header.column.getCanSort() && (
 													<button
 														className="users-table__filter-button"
-														// onClick={() => handleFilterClick(column.key)}
-														aria-label={`Filter by ${header.column.columnDef.header}`}
+														onClick={header.column.getToggleSortingHandler()}
+														aria-label={`Sort by ${header.column.columnDef.header}`}
 													>
 														<img
 															src="/assets/icons/filter.svg"
@@ -154,26 +162,58 @@ const UsersTable = () => {
 							</tr>
 						))}
 					</thead>
+
 					<tbody>
-						{table.getRowModel().rows.map((row) => (
-							<tr
-								key={row.id}
-								className="users-table__row"
-							>
-								{row.getVisibleCells().map((cell) => (
-									<td
-										key={cell.id}
-										className="users-table__cell"
-									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
-									</td>
-								))}
+						{isLoading ? (
+							<tr>
+								<td colSpan={columns.length}>
+									<div className="loader-container">
+										<div className="loader"></div>
+									</div>
+								</td>
 							</tr>
-						))}
+						) : allUsers.length <= 0 ? (
+							<tr>
+								<td colSpan={columns.length}>
+									<div className="no-users">
+										<img
+											src="/assets/images/no-users-2.svg"
+											alt="No Users"
+											className="no-users__illustration"
+										/>
+										<span className="no-users__title">No Users Found</span>
+										<p className="no-users__subtitle">
+											Customers will show up here once they start creating an
+											account
+										</p>
+									</div>
+								</td>
+							</tr>
+						) : (
+							table.getRowModel().rows.map((row) => (
+								<tr
+									key={row.id}
+									className="users-table__row"
+								>
+									{row.getVisibleCells().map((cell) => (
+										<td
+											key={cell.id}
+											className="users-table__cell"
+										>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
+										</td>
+									))}
+								</tr>
+							))
+						)}
 					</tbody>
 				</table>
 			</div>
-			{allUsers.length > 0 && <Pagination table={table} />}
+
+			{!isLoading && allUsers.length > 0 && <Pagination table={table} />}
 		</div>
 	);
 };

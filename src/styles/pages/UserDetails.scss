@@ -294,7 +294,17 @@
 	// Tabs Section
 	&__tabs {
 		display: flex;
-		// width: calc(100% - 60px);
+
+		/* Firefox */
+		scrollbar-width: none;
+
+		/* Internet Explorer 10+ */
+		-ms-overflow-style: none;
+
+		/* Webkit-based browsers (Chrome, Safari, Edge, Opera) */
+		&::-webkit-scrollbar {
+			display: none;
+		}
 		margin-top: 51px;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
@@ -386,11 +396,6 @@
 			grid-template-columns: repeat(4, 1fr);
 			gap: 30px 48px;
 		}
-
-		@include xl {
-			grid-template-columns: repeat(5, 1fr);
-			gap: 30px 56px;
-		}
 	}
 
 	&__info-item {
@@ -415,6 +420,7 @@
 		font-weight: 500;
 		color: $text-secondary;
 		margin: 0;
-		word-break: break-word;
+		// word-break: break-word;
+		text-wrap: nowrap;
 	}
 }

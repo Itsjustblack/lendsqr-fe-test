@@ -24,6 +24,8 @@ const statusOptions: OptionType<string>[] = [
 ];
 
 const TableFilter = () => {
+	const { filters, setFilters, resetFilters } = useFilters();
+
 	const {
 		register,
 		handleSubmit,
@@ -33,9 +35,8 @@ const TableFilter = () => {
 	} = useForm<FilterFormValues>({
 		resolver: zodResolver(filterSchema),
 		mode: "onChange",
+		defaultValues: { ...(filters || {}) },
 	});
-
-	const { setFilters, resetFilters } = useFilters();
 
 	const onSubmit: SubmitHandler<FilterFormValues> = (data) => {
 		setFilters(data);
@@ -203,8 +204,6 @@ const TableFilterButton = () => {
 	const openMenu = () => setIsOpen(true);
 	const closeMenu = () => setIsOpen(false);
 
-	const filterContent = <TableFilter />;
-
 	return (
 		<Popover
 			isOpen={isOpen}
@@ -213,17 +212,17 @@ const TableFilterButton = () => {
 			padding={10}
 			reposition={false}
 			onClickOutside={closeMenu}
-			content={() => filterContent} // use memoized instance
+			content={() => <TableFilter />}
 		>
 			<button
 				onClick={openMenu}
-				className="actions-menu__button"
+				className="filters-menu__button"
 			>
 				<img
 					src="/assets/icons/custom-filter
 					.svg"
-					alt="Actions Icon"
-					className="actions-menu__icon"
+					alt="Filters Icon"
+					className="filters-menu__icon"
 				/>
 			</button>
 		</Popover>

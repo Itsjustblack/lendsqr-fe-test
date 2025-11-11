@@ -3,7 +3,7 @@ import UserProfile from "./UserProfile";
 
 const NavBar = () => {
 	return (
-		<nav className="nav-bar">
+		<nav className="nav-bar hide-scrollbar">
 			<div className="logo">
 				<img
 					src="/assets/images/logo.svg"

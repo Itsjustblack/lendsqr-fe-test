@@ -1,4 +1,4 @@
-import type { PaginationState, SortingState } from "@tanstack/react-table";
+import type { PaginationState } from "@tanstack/react-table";
 import { create } from "zustand";
 import type { FilterFormValues } from "../libs/validation/filterSchema";
 
@@ -10,31 +10,17 @@ const initialPagination: PaginationState = {
 	pageSize: 10,
 };
 
-const initialSorting: SortingState = [];
-
 // Store state interface
 interface UserFiltersState {
-	// Data
 	filters: FilterFormValues;
 	pagination: PaginationState;
-	sorting: SortingState;
-
-	// Actions
 	actions: {
-		// Filter actions
 		setFilters: (filters: FilterFormValues) => void;
 		updateFilter: (key: keyof FilterFormValues, value: string | null) => void;
 		resetFilters: () => void;
-
-		// Pagination actions
 		setPagination: (pagination: PaginationState) => void;
 		setPageIndex: (pageIndex: number) => void;
 		setPageSize: (pageSize: number) => void;
-
-		// Sorting actions
-		setSorting: (sorting: SortingState) => void;
-
-		// Global reset
 		resetStore: () => void;
 	};
 }
@@ -44,7 +30,6 @@ export const useUserFiltersStore = create<UserFiltersState>((set) => ({
 	// Initial data state
 	filters: initialFilters,
 	pagination: initialPagination,
-	sorting: initialSorting,
 
 	// Actions
 	actions: {
@@ -52,7 +37,7 @@ export const useUserFiltersStore = create<UserFiltersState>((set) => ({
 		setFilters: (filters) =>
 			set({
 				filters,
-				pagination: initialPagination, // Reset to page 1 when filters change
+				pagination: initialPagination,
 			}),
 
 		updateFilter: (key, value) =>
@@ -61,7 +46,7 @@ export const useUserFiltersStore = create<UserFiltersState>((set) => ({
 					...state.filters,
 					[key]: value,
 				},
-				pagination: initialPagination, // Reset to page 1 when any filter changes
+				pagination: initialPagination,
 			})),
 
 		resetFilters: () =>
@@ -86,30 +71,19 @@ export const useUserFiltersStore = create<UserFiltersState>((set) => ({
 				pagination: {
 					...state.pagination,
 					pageSize,
-					pageIndex: 0, // Reset to first page when changing page size
+					pageIndex: 0,
 				},
 			})),
-
-		// Sorting actions
-		setSorting: (sorting) => set({ sorting }),
 
 		// Global reset
 		resetStore: () =>
 			set({
 				filters: initialFilters,
 				pagination: initialPagination,
-				sorting: initialSorting,
 			}),
 	},
 }));
 
-// ============================================
-// Custom Hooks for Granular Access
-// ============================================
-
-/**
- * Hook to access filter state and filter-specific actions
- */
 export const useFilters = () => {
 	const filters = useUserFiltersStore((state) => state.filters);
 	const setFilters = useUserFiltersStore((state) => state.actions.setFilters);
@@ -128,9 +102,6 @@ export const useFilters = () => {
 	};
 };
 
-/**
- * Hook to access pagination state and pagination-specific actions
- */
 export const usePagination = () => {
 	const pagination = useUserFiltersStore((state) => state.pagination);
 	const setPagination = useUserFiltersStore(
@@ -149,22 +120,6 @@ export const usePagination = () => {
 	};
 };
 
-/**
- * Hook to access sorting state and sorting-specific actions
- */
-export const useSorting = () => {
-	const sorting = useUserFiltersStore((state) => state.sorting);
-	const setSorting = useUserFiltersStore((state) => state.actions.setSorting);
-
-	return {
-		sorting,
-		setSorting,
-	};
-};
-
-/**
- * Hook to access all actions at once
- */
 export const useTableActions = () => {
 	return useUserFiltersStore((state) => state.actions);
 };

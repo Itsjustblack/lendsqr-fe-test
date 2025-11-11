@@ -28,7 +28,7 @@ export interface QueryParams {
 	};
 }
 
-export interface UserDetails {
+export interface IUserDetails {
 	personalInfo: {
 		fullName: string;
 		phoneNumber: string;

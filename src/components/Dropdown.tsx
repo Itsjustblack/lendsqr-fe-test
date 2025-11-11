@@ -10,7 +10,6 @@ export type OptionType<T = number> = {
 	value: T;
 };
 
-// Custom dropdown indicator using chevron-down.svg
 const DropdownIndicator = <T,>(
 	props: DropdownIndicatorProps<OptionType<T>>
 ) => {

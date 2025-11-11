@@ -7,42 +7,33 @@
 @use "../abstracts/mixins" as *;
 
 .layout {
-	min-height: 100dvh;
-
-	.main-content {
+	&__content {
 		position: relative;
-		// width: 100vw;
-		overflow-x: clip;
-		// height: 100%;
-		padding-top: 70px;
-		display: grid;
-		grid-template-columns: 1fr;
+		min-height: 100vh;
+
+		@include lg {
+			margin-left: 260px;
+		}
+
+		@include xl {
+			margin-left: 283px;
+		}
 	}
 
-	.content {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
+	&__container {
 		padding: 24px;
-		background-color: $bg-light;
-		// height: 100%;
-	}
+		padding-bottom: 40px;
+		margin-top: 70px;
 
-	@include lg {
-		.content {
+		@include lg {
 			padding: 30px;
-		}
-	}
-
-	@include xl {
-		.main-content {
-			padding-top: 100px;
-			grid-template-columns: 283px 1fr;
+			padding-bottom: 83px;
 		}
 
-		.content {
+		@include xl {
 			padding: 60px;
+			padding-bottom: 153px;
+			margin-top: 100px;
 		}
 	}
 }
@@ -121,11 +112,6 @@
 		.notification-button {
 			width: 26px;
 		}
-	}
-
-	@include xl {
-		height: 100px;
-		padding: 0 60px 0 30px;
 
 		.logo {
 			display: block;
@@ -135,5 +121,10 @@
 		.menu-button {
 			display: none;
 		}
+	}
+
+	@include xl {
+		height: 100px;
+		padding: 0 60px 0 30px;
 	}
 }
