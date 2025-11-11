@@ -29,14 +29,14 @@ This application is a feature-rich admin console that demonstrates professional 
 ## Tech Stack
 
 | Category               | Technologies                                          |
-| ---------------------- | ----------------------------------------------------- | ------- |
+| ---------------------- | ----------------------------------------------------- |
 | **Core**               | React 19, TypeScript, Vite                            |
 | **State Management**   | Zustand (global state), TanStack Query (server state) |
 | **Forms & Validation** | React Hook Form, Zod                                  |
 | **UI Components**      | TanStack Table, React Select, Framer Motion           |
 | **Styling**            | SCSS with SMACSS architecture                         |
 | **Routing**            | React Router v7                                       |
-| **Testing**            | Vitest, Testing Library, MSW, Happy DOM               | FakerJs |
+| **Testing**            | Vitest, Testing Library, MSW, Happy DOM, FakerJs      |
 | **API Mocking**        | Mock Service Worker (MSW)                             |
 | **Dev Tools**          | ESLint, TypeScript Compiler, React Compiler           |
 
@@ -63,7 +63,7 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:5173`.
 
 ### Available Scripts
 
@@ -147,10 +147,10 @@ styles/
 
 **Responsive Breakpoints:**
 
-- `sm`: 640px (small tablets)
-- `md`: 768px (tablets)
-- `lg`: 1024px (desktops)
-- `xl`: 1280px (large desktops)
+- **sm**: 640px (small tablets)
+- **md**: 768px (tablets)
+- **lg**: 1024px (desktops)
+- **xl**: 1280px (large desktops)
 
 ### Testing Philosophy
 
