@@ -1,47 +1,100 @@
-// =============================================================================
-// Sidebar
-// =============================================================================
-// Sidebar navigation styles
-
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-.side-nav {
-	display: none;
+.mobile-nav {
+	width: 100%;
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
 
 	@include lg {
-		display: block;
-		width: 100%;
-		box-shadow: 0px 5px 20px 0px rgba($black, 0.04);
-		z-index: 40;
-		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		margin-top: 70px;
-		max-width: 260px;
+		display: none;
 	}
 
-	@include xl {
-		max-width: 283px;
-		margin-top: 100px;
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 50;
+		background-color: rgba($black, 0.5);
+		display: block;
+		transition: opacity 0.3s ease-in-out;
 	}
 
 	&__container {
-		padding-top: 39px;
+		position: relative;
+		z-index: 100;
+		margin-top: 70px;
 		padding-bottom: 20px;
+		// height: 100vh;
 		height: calc(100vh - 70px);
 		overflow-y: auto;
 		background-color: $white;
+		// background-color: $accent;
+		width: 100%;
+		max-width: 283px;
+		transition: transform 0.3s ease-in-out;
+	}
 
-		@include xl {
-			height: calc(100vh - 100px);
+	&__logo-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		max-width: 283px;
+		width: 100%;
+		background-color: $white;
+		display: flex;
+		align-items: center;
+		height: 70px;
+		padding: 20px 0;
+		padding-left: 30px;
+		margin-bottom: 39px;
+		box-shadow: 3px 0px 20px 0px rgba($black, 0.04);
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&__sub-container {
+		padding-top: 39px;
+	}
+
+	&__logo {
+		height: 30px;
+		width: auto;
+		object-fit: cover;
+	}
+
+	&__close-btn {
+		position: absolute;
+		right: 24px;
+		width: 24px;
+		height: 24px;
+		cursor: pointer;
+	}
+
+	&__open {
+		.mobile-nav__overlay {
+			opacity: 1;
+		}
+
+		.mobile-nav__container,
+		.mobile-nav__logo-container {
+			transform: translateX(0);
 		}
 	}
 
-	img {
-		object-fit: cover;
-		width: 100%;
+	&__closed {
+		pointer-events: none;
+
+		.mobile-nav__overlay {
+			opacity: 0;
+		}
+
+		.mobile-nav__container,
+		.mobile-nav__logo-container {
+			transform: translateX(-100%);
+		}
 	}
 
 	button {
@@ -50,6 +103,7 @@
 
 	.switch-organization {
 		padding-bottom: 52px;
+		padding-left: 30px;
 		display: flex;
 		font-weight: normal;
 		align-items: center;
@@ -57,7 +111,6 @@
 		font-size: $font-size-base;
 		color: $text-primary;
 		cursor: pointer;
-		padding-left: 30px;
 
 		.title {
 			color: $text-secondary;

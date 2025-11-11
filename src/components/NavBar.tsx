@@ -1,7 +1,9 @@
+import { useMobileMenuActions } from "../store/mobileMenu";
 import SearchBar from "./SearchBar";
 import UserProfile from "./UserProfile";
 
 const NavBar = () => {
+	const { toggleMenu } = useMobileMenuActions();
 	return (
 		<nav className="nav-bar hide-scrollbar">
 			<div className="logo">
@@ -13,6 +15,7 @@ const NavBar = () => {
 			<button
 				className="menu-button"
 				type="button"
+				onClick={toggleMenu}
 			>
 				<img
 					src="/assets/icons/menu.svg"
