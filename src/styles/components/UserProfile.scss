@@ -5,7 +5,7 @@
 	display: flex;
 	align-items: center;
 	column-gap: 10px;
-	margin-left: 30px;
+	margin-left: 20px;
 
 	.avatar {
 		width: 48px;
@@ -24,7 +24,7 @@
 	}
 
 	@include xs {
-		margin-left: 20px;
+		margin-left: 30px;
 
 		.user-info {
 			display: flex;

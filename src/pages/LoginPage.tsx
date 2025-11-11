@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import PageTransition from "../components/PageTransition";
 import "../styles/pages/LoginPage.scss";
 
 const LoginPage = () => {
@@ -8,7 +9,8 @@ const LoginPage = () => {
 		navigate("/users");
 	}
 	return (
-		<main className="login-page">
+		<PageTransition>
+			<main className="login-page">
 			<div className="container">
 				<div className="logo">
 					<img
@@ -48,6 +50,7 @@ const LoginPage = () => {
 				</div>
 			</div>
 		</main>
+		</PageTransition>
 	);
 };
 

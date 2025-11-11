@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// Tabs Section
+.animated-tabs {
+	display: flex;
+
+	/* Firefox */
+	scrollbar-width: none;
+
+	/* Internet Explorer 10+ */
+	-ms-overflow-style: none;
+
+	/* Webkit-based browsers (Chrome, Safari, Edge, Opera) */
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	margin-top: 51px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+
+	&::-webkit-scrollbar {
+		height: 4px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba($primary, 0.2);
+		border-radius: 2px;
+	}
+}
+
+.animated-tab {
+	position: relative;
+	border-radius: 0px;
+	padding: 0 25px 10px;
+	font-weight: 400;
+	border: none;
+	font-family: $font-family-primary;
+	font-size: $font-size-base;
+	color: rgba($black, 0.8);
+	cursor: pointer;
+	transition: all 0.2s;
+	white-space: nowrap;
+	// min-width: 140px;
+
+	&:hover {
+		color: $accent;
+	}
+
+	&--active {
+		color: $accent;
+	}
+}
+
+.animated-tab-indicator {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background-color: $accent;
+}

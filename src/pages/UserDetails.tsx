@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import type { IUserDetails } from "../types/user";
 import { mockUserData } from "../libs/userDetails";
+import type { IUserDetails } from "../types/user";
 
+import AnimatedTabs from "../components/AnimatedTabs";
+import PageTransition from "../components/PageTransition";
 import "../styles/pages/UserDetails.scss";
 
 const UserDetails = () => {
@@ -32,7 +34,8 @@ const UserDetails = () => {
 	};
 
 	return (
-		<div className="user-details">
+		<PageTransition>
+			<div className="user-details">
 			<div className="user-details__header">
 				<button
 					className="user-details__back-btn"
@@ -124,17 +127,7 @@ const UserDetails = () => {
 						</div>
 					</div>
 				</div>
-				{/* TODO: Unresponsive on smaller screens */}
-				<div className="user-details__tabs">
-					<button className="user-details__tab user-details__tab--active">
-						General Details
-					</button>
-					<button className="user-details__tab">Documents</button>
-					<button className="user-details__tab">Bank Details</button>
-					<button className="user-details__tab">Loans</button>
-					<button className="user-details__tab">Savings</button>
-					<button className="user-details__tab">App and System</button>
-				</div>
+				<AnimatedTabs />
 			</div>
 
 			<div className="user-details__info-card">
@@ -327,6 +320,7 @@ const UserDetails = () => {
 				</section>
 			</div>
 		</div>
+		</PageTransition>
 	);
 };
 

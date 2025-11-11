@@ -3,7 +3,7 @@
 
 .user-details {
 	background-color: $bg-light;
-	min-height: 100vh;
+	min-height: 100dvh;
 	font-family: $font-family-primary;
 
 	// Header Section
@@ -289,61 +289,6 @@
 		font-size: $font-size-xs;
 		color: $text-primary;
 		margin: 0;
-	}
-
-	// Tabs Section
-	&__tabs {
-		display: flex;
-
-		/* Firefox */
-		scrollbar-width: none;
-
-		/* Internet Explorer 10+ */
-		-ms-overflow-style: none;
-
-		/* Webkit-based browsers (Chrome, Safari, Edge, Opera) */
-		&::-webkit-scrollbar {
-			display: none;
-		}
-		margin-top: 51px;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-
-		&::-webkit-scrollbar {
-			height: 4px;
-		}
-
-		&::-webkit-scrollbar-track {
-			background: transparent;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: rgba($primary, 0.2);
-			border-radius: 2px;
-		}
-	}
-
-	&__tab {
-		border-radius: 0px;
-		padding: 0 25px 10px;
-		font-weight: 400;
-		border: none;
-		font-family: $font-family-primary;
-		font-size: $font-size-base;
-		color: rgba($black, 0.8);
-		cursor: pointer;
-		transition: all 0.2s;
-		white-space: nowrap;
-		// min-width: 140px;
-
-		&:hover {
-			color: $accent;
-		}
-
-		&--active {
-			color: $accent;
-			border-bottom: 2px solid $accent;
-		}
 	}
 
 	// Info Card

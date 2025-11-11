@@ -1,9 +1,10 @@
 import UsersTable from "../components/UsersTable";
+import PageTransition from "../components/PageTransition";
 import "../styles/pages/Dashboard.scss";
 
 const Dashboard = () => {
 	return (
-		<>
+		<PageTransition>
 			<h1 className="title">Users</h1>
 			<div className="user-stats">
 				<div className="card">
@@ -40,7 +41,7 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<UsersTable />
-		</>
+		</PageTransition>
 	);
 };
 

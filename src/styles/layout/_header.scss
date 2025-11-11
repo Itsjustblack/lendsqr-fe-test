@@ -9,7 +9,7 @@
 .layout {
 	&__content {
 		position: relative;
-		min-height: 100vh;
+		min-height: 100dvh;
 
 		@include lg {
 			margin-left: 260px;
@@ -24,6 +24,7 @@
 		padding: 24px;
 		padding-bottom: 40px;
 		margin-top: 70px;
+		background-color: $bg-light;
 
 		@include lg {
 			padding: 30px;
@@ -79,7 +80,7 @@
 
 	.notification-button {
 		width: 24px;
-		margin-left: 47px;
+		margin-left: 27px;
 	}
 
 	.nav-link {
@@ -87,10 +88,6 @@
 	}
 
 	@include xs {
-		.notification-button {
-			margin-left: 27px;
-		}
-
 		.nav-link {
 			display: block;
 			font-family: $font-family-roboto;
@@ -111,6 +108,7 @@
 
 		.notification-button {
 			width: 26px;
+			margin-left: 47px;
 		}
 
 		.logo {

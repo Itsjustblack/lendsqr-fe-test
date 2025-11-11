@@ -8,6 +8,7 @@ import {
 	type ColumnDef,
 	type SortingState,
 } from "@tanstack/react-table";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { getAllUsers } from "../libs/api/user/queries";
 import { formatDate } from "../libs/utils";
@@ -108,15 +109,23 @@ const UsersTable = () => {
 
 	if (isError)
 		return (
-			<div className="error-section">
-				<img
-					src="/assets/images/no-users.svg"
-					alt="No Users"
-					className="error-section__illustration"
-				/>
-				<span className="error-section__title">Unable to load users</span>
-				<p className="error-section__subtitle">Please try again later.</p>
-			</div>
+			<AnimatePresence>
+				<motion.div
+					className="error-section"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.3 }}
+				>
+					<img
+						src="/assets/images/no-users.svg"
+						alt="No Users"
+						className="error-section__illustration"
+					/>
+					<span className="error-section__title">Unable to load users</span>
+					<p className="error-section__subtitle">Please try again later.</p>
+				</motion.div>
+			</AnimatePresence>
 		);
 
 	return (
@@ -167,26 +176,42 @@ const UsersTable = () => {
 						{isLoading ? (
 							<tr>
 								<td colSpan={columns.length}>
-									<div className="loader-container">
-										<div className="loader"></div>
-									</div>
+									<AnimatePresence>
+										<motion.div
+											className="loader-container"
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{ duration: 0.3 }}
+										>
+											<div className="loader"></div>
+										</motion.div>
+									</AnimatePresence>
 								</td>
 							</tr>
 						) : allUsers.length <= 0 ? (
 							<tr>
 								<td colSpan={columns.length}>
-									<div className="no-users">
-										<img
-											src="/assets/images/no-users-2.svg"
-											alt="No Users"
-											className="no-users__illustration"
-										/>
-										<span className="no-users__title">No Users Found</span>
-										<p className="no-users__subtitle">
-											Customers will show up here once they start creating an
-											account
-										</p>
-									</div>
+									<AnimatePresence>
+										<motion.div
+											className="no-users"
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{ duration: 0.3 }}
+										>
+											<img
+												src="/assets/images/no-users-2.svg"
+												alt="No Users"
+												className="no-users__illustration"
+											/>
+											<span className="no-users__title">No Users Found</span>
+											<p className="no-users__subtitle">
+												Customers will show up here once they start creating an
+												account
+											</p>
+										</motion.div>
+									</AnimatePresence>
 								</td>
 							</tr>
 						) : (

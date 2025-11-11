@@ -22,11 +22,10 @@
 	// Header
 	&__header {
 		&-cell {
+			padding: 0 16px;
 			padding-top: 20px;
 			padding-bottom: 12px;
 			// min-width: 100px;
-
-			padding: 0 16px;
 
 			&:first-of-type {
 				padding-left: 16px;
@@ -37,7 +36,7 @@
 			}
 
 			@include sm {
-				padding: 0 20px;
+				// padding: 0 20px;
 
 				&:first-of-type {
 					padding-left: 20px;
@@ -210,6 +209,7 @@
 }
 
 .no-users {
+	margin-top: 50px;
 	margin-bottom: 50px;
 	display: flex;
 	flex-direction: column;
@@ -236,10 +236,6 @@
 		text-align: center;
 		max-width: 400px;
 		line-height: 1.5;
-	}
-
-	@include md {
-		margin-top: 50px;
 	}
 }
 

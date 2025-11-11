@@ -6,4 +6,9 @@ export default defineConfig({
 	plugins: [
 		react(), // Disable React Compiler
 	],
+	server: {
+		allowedHosts: [
+			"orbiculately-subtemperate-evelin.ngrok-free.dev", // 👈 your ngrok hostname
+		],
+	},
 });
