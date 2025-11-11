@@ -30,7 +30,6 @@ interface Props<T = number> {
 	onChange: (option: OptionType<T> | null) => void;
 	placeholder?: string;
 	menuPlacement?: MenuPlacement;
-	isDisabled?: boolean;
 	variant?: "default" | "pagination";
 }
 
@@ -41,7 +40,6 @@ const Dropdown = <T = number,>({
 	onChange,
 	placeholder = "Select",
 	variant = "default",
-	isDisabled = false,
 }: Props<T>) => {
 	const wrapperClass =
 		variant === "pagination" ? "dropdown dropdown--pagination" : "dropdown";
@@ -57,7 +55,6 @@ const Dropdown = <T = number,>({
 				onChange={onChange}
 				classNamePrefix="dropdown"
 				isSearchable={false}
-				isDisabled={isDisabled}
 				menuPlacement={menuPlacement}
 				placeholder={placeholder}
 				components={{

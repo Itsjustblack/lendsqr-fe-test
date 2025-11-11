@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { PHONE_REGEX } from "../constants";
 
 // Helper for optional string fields that accept empty strings
 const optionalString = z
@@ -9,10 +10,9 @@ const optionalString = z
 // Email validation - accepts valid email format or empty string
 const emailField = z
 	.string()
-	.refine(
-		(val) => val === "" || z.string().email().safeParse(val).success,
-		{ message: "Invalid email format" }
-	)
+	.refine((val) => val === "" || z.string().email().safeParse(val).success, {
+		message: "Invalid email format",
+	})
 	.transform((val) => (val === "" ? undefined : val))
 	.optional();
 
@@ -20,9 +20,7 @@ const emailField = z
 const phoneField = z
 	.string()
 	.refine(
-		(val) =>
-			val === "" ||
-			/^[\d\s\-+()]+$/.test(val), // Allows digits, spaces, hyphens, plus, parentheses
+		(val) => val === "" || PHONE_REGEX.test(val), // Allows digits, spaces, hyphens, plus, parentheses
 		{ message: "Invalid phone number format" }
 	)
 	.transform((val) => (val === "" ? undefined : val))
@@ -31,10 +29,9 @@ const phoneField = z
 // Date validation - accepts YYYY-MM-DD format or empty string
 const dateField = z
 	.string()
-	.refine(
-		(val) => val === "" || /^\d{4}-\d{2}-\d{2}$/.test(val),
-		{ message: "Invalid date format (use YYYY-MM-DD)" }
-	)
+	.refine((val) => val === "" || /^\d{4}-\d{2}-\d{2}$/.test(val), {
+		message: "Invalid date format (use YYYY-MM-DD)",
+	})
 	.transform((val) => (val === "" ? undefined : val))
 	.optional();
 

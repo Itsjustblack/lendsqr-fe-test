@@ -8,7 +8,7 @@ describe("filterSchema", () => {
 				username: "john_doe",
 				email: "john@example.com",
 				date: "2024-01-15",
-				phoneNumber: "+234-801-234-5678",
+				phoneNumber: "+2349035346479",
 				organization: "Lendsqr",
 				status: "active",
 			};
@@ -150,13 +150,7 @@ describe("filterSchema", () => {
 
 		describe("Phone number validation", () => {
 			it("should accept valid phone formats", () => {
-				const validPhones = [
-					"+234-801-234-5678",
-					"(555) 123-4567",
-					"+1 555 123 4567",
-					"555-123-4567",
-					"5551234567",
-				];
+				const validPhones = ["+2349012323345", "09012323342"];
 
 				validPhones.forEach((phoneNumber) => {
 					const result = filterSchema.safeParse({ phoneNumber });

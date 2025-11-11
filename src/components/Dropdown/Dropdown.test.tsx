@@ -104,33 +104,5 @@ describe("Dropdown", () => {
 			const dropdown = document.querySelector(".dropdown");
 			expect(dropdown).toBeInTheDocument();
 		});
-
-		it("should handle disabled state", async () => {
-			const user = userEvent.setup();
-			const onChangeMock = vi.fn();
-
-			render(
-				<Dropdown
-					options={mockOptions}
-					selectedOption={mockOptions[0]}
-					onChange={onChangeMock}
-					isDisabled={true}
-				/>
-			);
-
-			// Find the dropdown control
-			const dropdownControl = screen
-				.getByText("10")
-				.closest(".dropdown__control");
-			expect(dropdownControl).toBeInTheDocument();
-
-			// Try to click the disabled dropdown
-			await user.click(dropdownControl!);
-
-			// onChange should not be called when disabled
-			// Note: react-select handles this internally
-			// The test documents expected behavior
-			expect(dropdownControl).toBeInTheDocument();
-		});
 	});
 });
