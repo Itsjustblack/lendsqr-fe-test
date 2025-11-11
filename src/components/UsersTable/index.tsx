@@ -10,15 +10,15 @@ import {
 } from "@tanstack/react-table";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { getAllUsers } from "../libs/api/user/queries";
-import { formatDate } from "../libs/utils";
-import { useFilters, usePagination } from "../store/filters";
-import "../styles/components/UsersTable.scss";
-import type { User, UserStatus } from "../types/user";
-import ActionsMenu from "./ActionsMenu";
-import Pagination from "./Pagination";
-import StatusBadge from "./StatusBadge";
-import TableFilterButton from "./TableFilter";
+import { getAllUsers } from "../../libs/api/user/queries";
+import { formatDate } from "../../libs/utils";
+import { useFilters, usePagination } from "../../store/filters";
+import "@/styles/components/UsersTable.scss";
+import type { User, UserStatus } from "../../types/user";
+import ActionsMenu from "../ActionsMenu";
+import Pagination from "../Pagination";
+import StatusBadge from "../StatusBadge";
+import TableFilterButton from "../TableFilter";
 
 const UsersTable = () => {
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -119,7 +119,7 @@ const UsersTable = () => {
 				>
 					<img
 						src="/assets/images/no-users.svg"
-						alt="No Users"
+						alt="Error illustration"
 						className="error-section__illustration"
 					/>
 					<span className="error-section__title">Unable to load users</span>
@@ -184,7 +184,10 @@ const UsersTable = () => {
 											exit={{ opacity: 0 }}
 											transition={{ duration: 0.3 }}
 										>
-											<div className="loader"></div>
+											<div
+												data-testid="loader"
+												className="loader"
+											></div>
 										</motion.div>
 									</AnimatePresence>
 								</td>

@@ -1,6 +1,6 @@
-import { useMobileMenuActions } from "../store/mobileMenu";
-import SearchBar from "./SearchBar";
-import UserProfile from "./UserProfile";
+import { useMobileMenuActions } from "../../store/mobileMenu";
+import SearchBar from "../SearchBar/SearchBar";
+import UserProfile from "../UserProfile";
 
 const NavBar = () => {
 	const { toggleMenu } = useMobileMenuActions();

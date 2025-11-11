@@ -1,9 +1,9 @@
 import type { Table } from "@tanstack/react-table";
-import "../styles/components/Pagination.scss";
-import type { User } from "../types/user";
-import Dropdown, { type OptionType } from "./Dropdown";
-import { ELLIPSIS, PAGE_SIZES } from "../libs/constants";
-import { generatePageNumbers } from "../libs/utils";
+import "@/styles/components/Pagination.scss";
+import type { User } from "../../types/user";
+import Dropdown, { type OptionType } from "../Dropdown";
+import { ELLIPSIS, PAGE_SIZES } from "../../libs/constants";
+import { generatePageNumbers } from "../../libs/utils";
 
 interface PaginationProps<TData> {
 	table: Table<TData>;

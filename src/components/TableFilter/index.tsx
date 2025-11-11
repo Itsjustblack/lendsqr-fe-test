@@ -5,10 +5,10 @@ import { Popover } from "react-tiny-popover";
 import {
 	filterSchema,
 	type FilterFormValues,
-} from "../libs/validation/filterSchema";
-import { useFilters } from "../store/filters";
-import "../styles/components/TableFilter.scss";
-import Dropdown, { type OptionType } from "./Dropdown";
+} from "../../libs/validation/filterSchema";
+import { useFilters } from "../../store/filters";
+import "@/styles/components/TableFilter.scss";
+import Dropdown, { type OptionType } from "../Dropdown";
 
 const organizationOptions: OptionType<string>[] = [
 	{ label: "Lendsqr", value: "lendsqr" },

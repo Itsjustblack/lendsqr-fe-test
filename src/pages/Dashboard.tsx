@@ -1,6 +1,6 @@
 import UsersTable from "../components/UsersTable";
 import PageTransition from "../components/PageTransition";
-import "../styles/pages/Dashboard.scss";
+import "@/styles/pages/Dashboard.scss";
 
 const Dashboard = () => {
 	return (

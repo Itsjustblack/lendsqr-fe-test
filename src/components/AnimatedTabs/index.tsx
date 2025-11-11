@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import "../styles/components/AnimatedTabs.scss";
+import "@/styles/components/AnimatedTabs.scss";
 
 const tabs = [
 	"General Details",

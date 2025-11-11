@@ -1,6 +1,6 @@
 import type { IUserDetails } from "../types/user";
 
-export const mockUserData: IUserDetails = {
+export const mockUserDetails: IUserDetails = {
 	personalInfo: {
 		fullName: "Grace Effiom",
 		phoneNumber: "07060780922",

@@ -1,5 +1,5 @@
-import "../styles/components/StatusBadge.scss";
-import type { UserStatus } from "../types/user";
+import "@/styles/components/StatusBadge.scss";
+import type { UserStatus } from "../../types/user";
 
 const StatusBadge: React.FC<{ status: UserStatus }> = ({ status }) => {
 	return (

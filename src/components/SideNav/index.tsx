@@ -1,5 +1,5 @@
-import { NAV_ITEMS } from "../libs/constants";
-import "../styles/layout/SideNav.scss";
+import { NAV_ITEMS } from "../../libs/constants";
+import "@/styles/layout/SideNav.scss";
 
 const SideNav = () => {
 	return (

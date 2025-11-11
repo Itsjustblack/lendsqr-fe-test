@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import { NAV_ITEMS } from "../libs/constants";
-import { useIsMenuOpen, useMobileMenuActions } from "../store/mobileMenu";
-import "../styles/components/MobileNav.scss";
+import { NAV_ITEMS } from "../../libs/constants";
+import { useIsMenuOpen, useMobileMenuActions } from "../../store/mobileMenu";
+import "@/styles/components/MobileNav.scss";
 
 const MobileNav = () => {
 	const isOpen = useIsMenuOpen();

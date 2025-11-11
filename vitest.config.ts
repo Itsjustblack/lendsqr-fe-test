@@ -9,6 +9,11 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    env: {
+      // Load .env.test during test runs to ensure MSW intercepts all API calls
+      VITE_API_BASE_URL: 'http://localhost:3000/api',
+      VITE_API_PRIVATE_KEY: 'test-key-123',
+    },
   },
   resolve: {
     alias: {

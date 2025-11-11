@@ -1,4 +1,4 @@
-import "../styles/components/UserProfile.scss";
+import "@/styles/components/UserProfile.scss";
 
 const UserProfile = () => {
 	return (

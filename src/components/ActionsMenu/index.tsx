@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { Popover } from "react-tiny-popover";
 
-import "../styles/components/ActionsMenu.scss";
-import { useNavigate } from "react-router";
+import "@/styles/components/ActionsMenu.scss";
 
 const ActionsMenu: React.FC<{ userId: string }> = ({ userId }) => {
 	const [isOpen, setIsOpen] = useState(false);

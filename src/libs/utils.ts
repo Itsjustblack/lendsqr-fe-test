@@ -1,22 +1,17 @@
 import type { QueryParams } from "../types/user";
-import { ELLIPSIS, MAX_VISIBLE_PAGES, PAGE_THRESHOLD } from "./constants";
-
-const months = [
-	"Jan",
-	"Feb",
-	"Mar",
-	"Apr",
-	"May",
-	"Jun",
-	"Jul",
-	"Aug",
-	"Sep",
-	"Oct",
-	"Nov",
-	"Dec",
-];
+import {
+	ELLIPSIS,
+	MAX_VISIBLE_PAGES,
+	months,
+	PAGE_THRESHOLD,
+} from "./constants";
 
 export function formatDate(date: Date): string {
+	// Handle null, undefined, or invalid inputs
+	if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+		return "Invalid Date";
+	}
+
 	const month = months[date.getMonth()];
 	const day = date.getDate();
 	const year = date.getFullYear();
