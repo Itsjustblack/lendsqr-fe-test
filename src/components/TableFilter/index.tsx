@@ -1,3 +1,4 @@
+import "@/styles/components/TableFilter.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
@@ -7,13 +8,14 @@ import {
 	type FilterFormValues,
 } from "../../libs/validation/filterSchema";
 import { useFilters } from "../../store/filters";
-import "@/styles/components/TableFilter.scss";
 import Dropdown, { type OptionType } from "../Dropdown";
 
 const organizationOptions: OptionType<string>[] = [
-	{ label: "Lendsqr", value: "lendsqr" },
-	{ label: "Lendstar", value: "lendstar" },
-	{ label: "Irorun", value: "irorun" },
+	{ label: "Paystack", value: "Paystack" },
+	{ label: "Flutterwave", value: "Flutterwave" },
+	{ label: "Kuda", value: "Kuda" },
+	{ label: "Access Bank", value: "Access Bank" },
+	{ label: "GTBank", value: "GTBank" },
 ];
 
 const statusOptions: OptionType<string>[] = [
