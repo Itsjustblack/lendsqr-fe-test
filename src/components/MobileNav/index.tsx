@@ -7,6 +7,12 @@ const MobileNav = () => {
 	const isOpen = useIsMenuOpen();
 	const { closeMenu } = useMobileMenuActions();
 
+	const delayCloseMenu = () => {
+		setTimeout(() => {
+			closeMenu();
+		}, 300);
+	};
+
 	const mobileNavContent = (
 		<div className={`mobile-nav mobile-nav__${isOpen ? "open" : "closed"}`}>
 			<div className="mobile-nav__overlay" />
@@ -53,7 +59,10 @@ const MobileNav = () => {
 						>
 							<p className="title">{group.category}</p>
 							{group.items.map((item) => (
-								<li key={item.name}>
+								<li
+									key={item.name}
+									onClick={delayCloseMenu}
+								>
 									<a className="nav-link">
 										<img
 											className="icon"
