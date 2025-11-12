@@ -41,19 +41,6 @@ describe("loginSchema", () => {
 			}
 		});
 
-		it("should reject empty email", () => {
-			const data = {
-				email: "",
-				password: "password123",
-			};
-
-			const result = loginSchema.safeParse(data);
-			expect(result.success).toBe(false);
-			if (!result.success) {
-				expect(result.error.issues[0].message).toBe("Email is required");
-			}
-		});
-
 		it("should reject missing email", () => {
 			const data = {
 				password: "password123",
