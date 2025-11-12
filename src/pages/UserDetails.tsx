@@ -4,9 +4,9 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { mockUserDetails } from "../libs/data";
 import type { IUserDetails } from "../types/user";
 
+import "@/styles/pages/UserDetails.scss";
 import AnimatedTabs from "../components/AnimatedTabs";
 import PageTransition from "../components/PageTransition";
-import "@/styles/pages/UserDetails.scss";
 
 const UserDetails = () => {
 	const [userData, setUserData] = useLocalStorage<IUserDetails>(
@@ -15,26 +15,13 @@ const UserDetails = () => {
 	);
 
 	useEffect(() => {
-		// Validate userData structure and reset if corrupted/invalid
-		if (
-			!userData ||
-			typeof userData !== "object" ||
-			!userData.basicInfo ||
-			!userData.personalInfo ||
-			!userData.education ||
-			!userData.socials ||
-			!userData.guarantor ||
-			!userData.secondGuarantor
-		) {
-			setUserData(mockUserDetails);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		setUserData(mockUserDetails);
 	}, []);
 
 	const navigate = useNavigate();
 
 	const handleBack = () => {
-		navigate(-1);
+		navigate("/users");
 	};
 
 	const handleBlacklist = () => {
@@ -138,7 +125,8 @@ const UserDetails = () => {
 									{userData?.basicInfo?.accountBalance || "N/A"}
 								</p>
 								<p className="user-details__bank-info">
-									{userData?.basicInfo?.bankAccount || "N/A"}/{userData?.basicInfo?.bankName || "N/A"}
+									{userData?.basicInfo?.bankAccount || "N/A"}/
+									{userData?.basicInfo?.bankName || "N/A"}
 								</p>
 							</div>
 						</div>
